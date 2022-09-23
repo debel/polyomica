@@ -11,8 +11,10 @@ function generateGrid(n) {
   return grid;
 }
 
+const allColors = ['red', 'green', 'blue', 'yellow', 'purple', 'cyan'];
+
 function fullOrEmpty(cell) {
-  return `class="${cell === 0 ? 'empty' : 'full'}"`;
+  return `class="${cell === 0 ? 'empty' : (allColors[cell - 1] || 'red')}"`;
 }
 
 function drawGrid(grid) {
@@ -31,7 +33,7 @@ function drawShape(shape) {
   el.appendChild(drawnShape);
 
   const rotateBtn = document.createElement('button');
-  rotateBtn.innerText = "rotate";
+  rotateBtn.innerText = "r";
   rotateBtn.onclick = () => {
     shape = rotate(shape);
     const newShape = drawGrid(shape);
@@ -42,7 +44,7 @@ function drawShape(shape) {
 
 
   const hMirrorBtn = document.createElement('button');
-  hMirrorBtn.innerText = "hm";
+  hMirrorBtn.innerText = "h";
   hMirrorBtn.onclick = () => {
     shape = mirrorHorizontal(shape);
     const newShape = drawGrid(shape);
@@ -52,7 +54,7 @@ function drawShape(shape) {
   el.appendChild(hMirrorBtn);
 
   const vMirrorBtn = document.createElement('button');
-  vMirrorBtn.innerText = "vm";
+  vMirrorBtn.innerText = "v";
   vMirrorBtn.onclick = () => {
     shape = mirrorVertical(shape);
     const newShape = drawGrid(shape);
@@ -62,9 +64,9 @@ function drawShape(shape) {
   el.appendChild(vMirrorBtn);
 
   const select = document.createElement('button');
-  select.innerText = "select";
+  select.innerText = "s";
   select.onclick = () => {
-    selectedShape = shape;
+    selectedShape = minEnvelope(shape);
   };
   el.appendChild(select);
 

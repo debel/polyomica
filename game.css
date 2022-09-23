@@ -6,8 +6,21 @@
   display: inline-block;
 }
 
+#market {
+  max-width: 50%;
+}
+
 #market>table {
   display: inline-flex;
+}
+
+#market table td {
+  width: 10px;
+  height: 10px;
+}
+
+#shape button {
+  width: 10px !important;
 }
 
 td {
@@ -17,6 +30,26 @@ td {
   text-align: center;
 }
 
-td.full {
+.red {
   background-color: red;
+}
+
+.yellow {
+  background-color: yellowgreen;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.green {
+  background-color: green;
+}
+
+.purple {
+  background-color: purple;
+}
+
+.cyan {
+  background-color: cyan;
 }

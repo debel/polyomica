@@ -16,6 +16,50 @@ function mirrorVertical(matrix) {
     row.map((_, j) => matrix[rows - i][j]))
 }
 
+function isEmptyRow(row) {
+  return row.every(e => e === 0);
+}
+
+function filterRow(row) {
+  return row.filter(e => e !== 0);
+}
+
+function minEnvelope(matrix) {
+  const newMatrix = [];
+  let startRow = -1;
+  let endRow = -1;
+
+  matrix.forEach((row, r) => {
+    if (!isEmptyRow(row)) {
+      newMatrix.push([]);
+      if (startRow === -1) {
+        startRow = r;
+      }
+      endRow = r;
+    }
+  });
+
+  for (let i = 0; i < matrix[0].length; i += 1) {
+    let allEmpty = true;
+
+    for (let j = startRow; j <= endRow; j += 1) {
+      if (matrix[j][i] !== 0) {
+        allEmpty = false;
+      }
+    }
+
+    if (allEmpty == true) {
+      continue;
+    }
+
+    for (let j = 0, k = startRow; j < newMatrix.length; j += 1, k += 1) {
+      newMatrix[j].push(matrix[k][i]);
+    }
+  }
+
+  return newMatrix;
+}
+
 function impose(mA, mB, y, x) {
   const copy = JSON.parse(JSON.stringify(mA));
   x = +x;

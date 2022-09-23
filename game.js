@@ -6,6 +6,7 @@ const board = document.getElementById("board");
 
 board.appendChild(drawnBoard);
 
+let currentColorIndex = 0;
 let selectedShape = [[]];
 
 board.addEventListener("mouseup", e => {
@@ -17,8 +18,8 @@ board.addEventListener("mouseup", e => {
 }, false);
 
 board.addEventListener("mousemove", e => {
-  newBoardState = impose(boardState, selectedShape, e.target.dataset.x, e.target.dataset.y);
-  const newGrid = drawGrid(newBoardState);
+  const temporaryBoardState = impose(boardState, selectedShape, e.target.dataset.x, e.target.dataset.y);
+  const newGrid = drawGrid(temporaryBoardState);
   board.replaceChild(newGrid, drawnBoard);
   drawnBoard = newGrid;
 }, false);
